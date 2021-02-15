@@ -1,5 +1,6 @@
-# bactocap
-This repo contains all the materials required to reproduce the analysis and workflow from the bactocap project
+# onchowgs
+This repo contains bare nextflow and docker dependencies (based on bactocap repo) for ngs short read trimming, mapping, and QC
+Ultimately you will end up with some mapped reads in .bam files, and bunch of QC data
 
 ### Getting started
 
