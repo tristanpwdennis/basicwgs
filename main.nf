@@ -12,15 +12,15 @@ log.info "===================================================================="
  * and read pairs by using the command line options
  */
 
-params.reads = "$baseDir/raw_reads/*{R1_001,R2_001}.fastq.gz"
-params.fasta = "$baseDir/ref/*.fasta"
+params.reads = "$baseDir/raw_reads/*{_1,_2}.fq.gz"
+params.fasta = "$baseDir/ref/*.fa"
 params.dict = "$baseDir/ref/*.dict"
-params.fai = "$baseDir/ref/*.fasta.fai"
-params.bwt = "$baseDir/ref/*.fasta.bwt"
-params.ann = "$baseDir/ref/*.fasta.ann"
-params.pac = "$baseDir/ref/*.fasta.pac"
-params.sa = "$baseDir/ref/*.fasta.sa"
-params.amb = "$baseDir/ref/*.fasta.amb"
+params.fai = "$baseDir/ref/*.fa.fai"
+params.bwt = "$baseDir/ref/*.fa.bwt"
+params.ann = "$baseDir/ref/*.fa.ann"
+params.pac = "$baseDir/ref/*.fa.pac"
+params.sa = "$baseDir/ref/*.fa.sa"
+params.amb = "$baseDir/ref/*.fa.amb"
 params.results = "$baseDir/results"
 
 
@@ -227,32 +227,6 @@ process Qualimap {
   """
 }
 
-
-bits = bed.merge(fasta5, fai4, dict4)
-docchannel = bamqc3.combine(bits)
-
-process CollectDoC {
-  tag "Collecting coverage stats from ${pair_id}"
-  publishDir "$params.results/${pair_id}"
-  input:
-  tuple val(pair_id), file("${pair_id}.rg.bam"), file("${pair_id}.rg.bai"), file(bed), file(fasta5), file(fai4), file(dict4) from docchannel
-  output:
-  file ("${pair_id}.sample_cumulative_coverage_counts") 
-  file ("${pair_id}.sample_cumulative_coverage_proportions")
-  file ("${pair_id}.sample_interval_statistics")
-  file ("${pair_id}.sample_interval_summary")
-  file ("${pair_id}.sample_statistics")
-  file ("${pair_id}.sample_summary")
-
-script:
- """
-gatk DepthOfCoverage \
--R ${fasta5} \
--O ${pair_id} \
--I ${pair_id}.rg.bam \
--L ${bed}
-  """  
-}
 
 process FlagstatRun {
   tag "Collecting read metadata from ${pair_id}"
