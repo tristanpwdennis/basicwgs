@@ -1,4 +1,4 @@
-# onchowgs
+#basic wgs
 This repo contains the barebones pipeline for read data cleaning, mapping and qc
 Ultimately you will end up with some trimmed read files, some bam alignments, and a bunch of qc data from fastqc, qualimap, flagstat wrapped into a multiqc report
 Two ways you can do this. 
