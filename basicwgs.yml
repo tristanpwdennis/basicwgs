@@ -23,6 +23,7 @@ dependencies:
   - freetype=2.10.4
   - functools32=3.2.3.2
   - futures=3.3.0
+  - gatk=3.8
   - git=2.23.0
   - glib=2.67.4
   - gst-plugins-base=1.14.0
