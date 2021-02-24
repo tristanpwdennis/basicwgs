@@ -1,4 +1,9 @@
-TNUM=8
+#init conda
+source ~/.bashrc
+cd /export/projects/III-data/lamberton/tdd3v/marshallagia/basicwgs
+
+#specify threadnum
+TNUM=12
 REF=tc_canu1.9_200521.fa
 
 rm -rf results
