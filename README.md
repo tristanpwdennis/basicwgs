@@ -1,6 +1,6 @@
 # onchowgs
-This repo contains the barebones pipeline for read data cleaning, mapping and qc
-Ultimately you will end up with some trimmed read files, some bam alignments, and a bunch of qc data from fastqc, qualimap, flagstat wrapped into a multiqc report
+This repo contains the barebones pipeline for read data cleaning, mapping and qc.
+Ultimately you will end up with some trimmed read files, some bam alignments, and a bunch of qc data from fastqc, qualimap, flagstat wrapped into a multiqc report.
 Two ways you can do this. 
 
 * First, follow the instructions below to create the docker container and run in nextflow for HPC or on local for small data.
