@@ -1,15 +1,8 @@
-#init conda
-source ~/.bashrc
-cd /export/projects/III-data/lamberton/tdd3v/marshallagia/basicwgs
-
 #specify threadnum
 TNUM=12
-REF=tc_canu1.9_200521.fa
+REF=GCF_000005575.2_AgamP3_genomic.fna
 
-rm -rf results
-mkdir results
-
-for f in `ls raw_reads/*.fq.gz | sed 's/_[^_]*$//' | sed 's!.*/!!' | uniq`
+for f in `ls raw_reads/*.fastq.gz | sed 's/_[^_]*$//' |sed 's/_[^_]*$//' | sed 's!.*/!!' | uniq`
 do
 mkdir results/"$f"
 TRIMDIR=results/"$f"/trimmed_reads
@@ -17,7 +10,7 @@ mkdir $TRIMDIR
 
 
 #run fastp to trim raw reads
-fastp -w $TNUM -i raw_reads/$f"_1.fq.gz" -I raw_reads/$f"_2.fq.gz" -o results/$f/trimmed_reads/$f"_1_trim.fq.gz" -O results/$f/trimmed_reads/$f"_2_trim.fq.gz"
+fastp -w $TNUM -i raw_reads/$f"_R1_001.fastq.gz" -I raw_reads/$f"_R2_001.fastq.gz" -o results/$f/trimmed_reads/$f"_1_trim.fq.gz" -O results/$f/trimmed_reads/$f"_2_trim.fq.gz"
 	
 #run fastqc on both pairs
 fastqc -t $TNUM -o results/$f -f fastq $TRIMDIR/$f"_2_trim.fq.gz"
@@ -26,8 +19,8 @@ fastqc -t $TNUM -o results/$f -f fastq $TRIMDIR/$f"_1_trim.fq.gz"
 #bwa, fixmate, sort, markdup
 mkdir results/"$f"/tmp
 bwa mem -t $TNUM ref/$REF results/$f/trimmed_reads/$f"_1_trim.fq.gz" results/$f/trimmed_reads/$f"_2_trim.fq.gz" | \
-    samtools fixmate -u -m - - | \
-    samtools sort -u -@$TNUM -T results/"$f"/tmp - | \
+    samtools fixmate -m - - | \
+    samtools sort -@$TNUM -T results/"$f"/tmp - | \
     samtools markdup -@$TNUM --reference $REF - results/"$f"/$f".srt.dp.bam"
 
 #flagstat
