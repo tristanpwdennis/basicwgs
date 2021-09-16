@@ -1,15 +1,23 @@
-<<<<<<< HEAD
-# onchowgs
-This repo contains the barebones pipeline for read data cleaning, mapping and qc.
-Ultimately you will end up with some trimmed read files, some bam alignments, and a bunch of qc data from fastqc, qualimap, flagstat wrapped into a multiqc report.
-=======
-#basic wgs
+
+# basic wgs
+
 This repo contains the barebones pipeline for read data cleaning, mapping and qc
 Ultimately you will end up with some trimmed read files, some bam alignments, and a bunch of qc data from fastqc, qualimap, flagstat wrapped into a multiqc report
 
-* First, follow the instructions below to create the docker container and run in nextflow for HPC or on local for small data.
+There are detailed instructions below about wrapping this into a nextflow workflow, if you wish to use nextflow.
 
-### Getting started
+The 'cheaper' version:
+
+* Import the conda environment:
+`conda conda env create -f <envfilename>.yml`
+
+* Download reference genome of your choice into the `ref` directory
+* Index it with `bash index.sh` in the `bin` directory
+* Run `bash pipeline.sh`
+
+### Getting started with nextflow
+
+* First, follow the instructions below to create the docker container and run in nextflow for HPC or on local for small data.
 
 This project uses Docker to manage all the dependencies, and nextflow to run the analysis. To get started, make sure you have docker installed. Installation instructions by platform are here:
 https://docs.docker.com/engine/install/ . Once you're finished, fire up the terminal and doublecheck with ```docker -v```
