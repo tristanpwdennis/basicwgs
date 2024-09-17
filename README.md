@@ -54,7 +54,7 @@ When the project is further advanced, the read data for the bactocap project wil
 It's as simple as running 
 ```
 nextflow run main.nf --help
-
+```
 Nextflow caches all the steps, so you don't have to go back to square one with each reanalysis. Just add more data to the raw_reads directory, or restart if you accidentally shut off your machine with
 ```
 nextflow run main.nf -resume
