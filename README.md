@@ -70,10 +70,3 @@ The final bam files  and most qc data will be published in the ```results``` dir
 The individual fastqc and bamqc data will be published in the ``` individual_reports``` subdirectory and agglomerated in the ```multiqc_report.html``` document.
 A tab delimited text file ```mapping_stats.csv``` contains the flagstat data for analysis etc
 
-
-
-
-
-
-
-# onchowgs
