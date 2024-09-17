@@ -1,7 +1,7 @@
 
 # basic wgs
 
-This repo contains the barebones pipeline for read data cleaning, mapping and qc
+This repo contains the barebones pipeline for read data cleaning, mapping and qc.
 Ultimately you will end up with some trimmed read files, some bam alignments, and a bunch of qc data from fastqc, qualimap, flagstat wrapped into a multiqc report
 
 There are detailed instructions below about wrapping this into a nextflow workflow, if you wish to use nextflow.
